@@ -15,13 +15,13 @@ jobs:
         with:
           go-version: 1.26
 
+      - name: Run go mod tidy
+        run: go mod tidy
+
       - name: Install govulncheck
         run: go install golang.org/x/vuln/cmd/govulncheck@latest
 
       - name: Run Go
         run: |
-          go mod tidy
+          govulncheck -scan package ./...
           go run main.go
-
-      - name: Check for vulnerabilities
-        run: govulncheck -scan package ./...
