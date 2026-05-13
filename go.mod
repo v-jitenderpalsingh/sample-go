@@ -1,5 +1,5 @@
 module github.com/your/module
-go 1.21
+go 1.26
 
 
 require (
