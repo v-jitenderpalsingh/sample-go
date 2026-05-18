@@ -20,5 +20,5 @@ jobs:
 
       - name: Run Go
         run: |
-          govulncheck ./...
+          govulncheck -scan module
           go run main.go
