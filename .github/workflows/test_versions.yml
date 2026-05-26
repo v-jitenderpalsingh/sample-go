@@ -1,5 +1,5 @@
 name: Test different versions of Go
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        go: ['go1.25', 'go1.26.3']
+        go: ['1.25', '1.26.3']
 
     steps:
       - name: Checkout repository
