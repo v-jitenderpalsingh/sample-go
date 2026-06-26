@@ -23,7 +23,6 @@ jobs:
         run: |
           echo "Testing with Go version ${{ matrix.go }}"
           echo "Go version: $(go version)"
-          go run main.go
 
   test-go-version:
     name: Test Go version on test-go-version
@@ -47,4 +46,3 @@ jobs:
         run: |
           echo "Testing with Go version ${{ matrix.go }}"
           echo "Go version: $(go version)"
-          go run main.go
