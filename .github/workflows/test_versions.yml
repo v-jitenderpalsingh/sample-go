@@ -1,20 +1,45 @@
 name: Test different versions of Go
 on: [workflow_dispatch]
 jobs:
-  test:
+  test-v6:
+    name: Test Go version on v6
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        go: ['1.25', '1.26.3']
+        go: ['1.26.3','go.1.26','1.18','go1.20']
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up Go
         uses: actions/setup-go@v6
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Run Go
+        run: |
+          echo "Testing with Go version ${{ matrix.go }}"
+          echo "Go version: $(go version)"
+          go run main.go
+
+  test-go-version:
+    name: Test Go version on test-go-version
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ['1.26.3','go.1.26','1.18','go1.20']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Go
+        uses: v-jitenderpalsingh/setup-go@test-go-version
         with:
           go-version: ${{ matrix.go }}
 
