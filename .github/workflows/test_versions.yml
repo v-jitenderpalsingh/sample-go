@@ -1,5 +1,5 @@
 name: Test different versions of Go
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 jobs:
   test-v6:
     name: Test Go version on v6
