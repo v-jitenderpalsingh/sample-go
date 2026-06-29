@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: 
-        go: ['1.21',  '^1.22', '~1.22.0', '1.22.0-rc.1', '1.23.0-beta.1', 'go1.21', 'go1.21.5', 'go1.22beta1', 'go1.22rc1']
+        go: ['1.21',  '^1.22', '~1.22.0', '1.22.0-rc.1', '1.19.0-beta.1', 'go1.21', 'go1.21.5', 'go1.19beta1', 'go1.22rc1']
 
     steps:
       - uses: actions/checkout@v7
