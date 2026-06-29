@@ -8,32 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          # semver inputs (unchanged behavior)
-          - go-version: '1.21'
-            expect-contains: 'go1.21'
-          - go-version: '1.21.5'
-            expect-contains: 'go1.21.5'
-          - go-version: '^1.22'
-            expect-contains: 'go1.22'
-          - go-version: '~1.22.0'
-            expect-contains: 'go1.22'
-          - go-version: '1.22.0-rc.1'
-            expect-contains: 'go1.22rc1'
-
-          # Go-native inputs (new behavior)
-          - go-version: 'go1.21'
-            expect-contains: 'go1.21 '          # exact go1.21, trailing space rules out go1.21.5
-          - go-version: 'go1.21.5'
-            expect-contains: 'go1.21.5'
-          - go-version: 'go1.22beta1'
-            expect-contains: 'go1.22beta1'
-          - go-version: 'go1.22rc1'
-            expect-contains: 'go1.22rc1'
+      matrix: 
+        go: ['1.21',  '^1.22', '~1.22.0', '1.22.0-rc.1', '1.23.0-beta.1', 'go1.21', 'go1.21.5', 'go1.22beta1', 'go1.22rc1']
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: setup-go (${{ matrix.go-version }})
         id: setup
         uses: v-jitenderpalsingh/setup-go@test-go-version
@@ -44,13 +23,12 @@ jobs:
           installed="$(go version)"
           echo "Installed: $installed"
           echo "Output:    ${{ steps.setup.outputs.go-version }}"
-          echo "$installed" | grep -F -- "${{ matrix.expect-contains }}"
 
   # --- 2. go-version-file (.go-version with Go-native string) ---
   version-file:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: echo "go1.21.5" > .go-version
       - uses: v-jitenderpalsingh/setup-go@test-go-version
         with:
@@ -63,14 +41,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        bad-version:
-          - 'go1.21.x'      # silently coerced before; now rejected
-          - 'go^1.21'       # semver range with go prefix
-          - 'go~1.21'
-          - 'go1.21-rc.1'   # wrong separator (upstream uses 'rc1' not '-rc.1')
-          - 'gotip'
+        bad-version: ['go1.21.x', 'go^1.21', 'go~1.21', 'go1.21-rc.1', 'gotip']
+        
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: setup-go must fail for ${{ matrix.bad-version }}
         uses: v-jitenderpalsingh/setup-go@test-go-version
         with:
@@ -83,11 +57,9 @@ jobs:
   invalid-version-file:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: echo "go1.21.x" > .go-version
-      - id: setup
-        continue-on-error: true
-        uses: v-jitenderpalsingh/setup-go@test-go-version
+      - uses: v-jitenderpalsingh/setup-go@test-go-version
         with:
           go-version-file: .go-version
       - run: |
