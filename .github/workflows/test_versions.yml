@@ -64,3 +64,4 @@ jobs:
           go-version-file: .go-version
       - run: |
           go version
+          
