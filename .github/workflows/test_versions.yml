@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v7
       - name: setup-go (${{ matrix.go-version }})
         id: setup
-        uses: actions/setup-go@v6
+        uses: v-jitenderpalsingh/setup-go@test-go-version
         with:
           go-version: ${{ matrix.go }}
       - name: Verify installed version
@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - run: echo "go1.21.5" > .go-version
-      - uses: actions/setup-go@v6
+      - uses: v-jitenderpalsingh/setup-go@test-go-version
         with:
           go-version-file: .go-version
       - run: go version | grep -F 'go1.21.5'
@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: setup-go must fail for ${{ matrix.bad-version }}
-        uses: actions/setup-go@v6
+        uses: v-jitenderpalsingh/setup-go@test-go-version
         with:
           go-version: ${{ matrix.bad-version }}
       - name: Assert previous step failed
@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - run: echo "go1.21.x" > .go-version
-      - uses: actions/setup-go@v6
+      - uses: v-jitenderpalsingh/setup-go@test-go-version
         with:
           go-version-file: .go-version
       - run: |
