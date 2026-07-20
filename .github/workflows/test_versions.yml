@@ -1,6 +1,6 @@
 name: Test Go version syntax
 
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 jobs:
   # --- 1. Valid inputs that must succeed and resolve to the expected Go version ---
@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: 
-        go: ['1.21',  '^1.22', '~1.22.0', '1.22.0-rc.1', '1.19.0-beta.1', 'go1.21', 'go1.21.5', 'go1.19beta1', 'go1.22rc1']
+        go: ['1.21',  '^1.22', '~1.22.0', '1.22.0-rc.1', '1.19.0-beta.1', 'go1.21', 'go1.21.5', 'go1.19beta1', 'go1.22rc1', 'go1']
 
     steps:
       - uses: actions/checkout@v7
