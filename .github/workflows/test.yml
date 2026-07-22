@@ -1,34 +1,20 @@
 name: Test workflow
 
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 jobs:
-  test-v6:
-    runs-on: ubuntu-latest
-
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
 
-      - name: Set up Go
-        uses: actions/setup-go@v6
+      - name: Setup Go
+        uses: v-jitenderpalsingh/setup-go@test-go-version
         with:
-          go-version: 1.26
-      
-      - name: Check version
-        run: go version
+          go-version: go1
 
-  test-esm:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
-      - name: Set up Node.js
-        uses: priyagupta108/setup-go@esm-and-dependency-upgrades
-        with:
-          go-version: 1.26
-      
-      - name: Check version
-        run: go version
+      - run: go version
