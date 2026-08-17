@@ -3,7 +3,7 @@ name: Checking workflow
 on: [push, workflow_dispatch]
 
 jobs:
-  test-1.26:
+  test-go-version:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
