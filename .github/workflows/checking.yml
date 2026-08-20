@@ -3,47 +3,33 @@ name: Checking workflow
 on: [push, workflow_dispatch]
 
 jobs:
-  test-go-version:
+  test-workaround:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
 
+      - id: go-version
+        shell: bash
+        run: |
+          v=$(awk '$1 == "go" && $2 ~ /^[0-9]+\.[0-9]+/ { split($2, v, "."); print v[1] "." v[2]; exit }' go.mod)
+          [ -n "$v" ] || { echo "::error::no go directive found in go.mod"; exit 1; }
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+
       - name: Set up Go
         uses: actions/setup-go@v7
         with:
-          go-version: '1.22'
+          go-version: ${{ steps.go-version.outputs.version }}
+          check-latest: true
 
 
       - name: Check go version
         run: go version
 
-      - name: Run main file
-        run: go run main.go
-    
-  test-go-version-file:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
-      - name: Set up Go using .go-version file
-        uses: actions/setup-go@v7
-        with:
-          go-version-file: 'go.mod'
-
-      - name: Check go version
-        run: go version 
-      
       - name: Run main file
         run: go run main.go
