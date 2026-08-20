@@ -17,9 +17,9 @@ jobs:
       - id: go-version
         shell: bash
         run: |
-          v=$(awk '$1 == "go" && $2 ~ /^[0-9]+\.[0-9]+/ { split($2, v, "."); print v[1] "." v[2]; exit }' go.mod)
-          [ -n "$v" ] || { echo "::error::no go directive found in go.mod"; exit 1; }
-          echo "version=$v" >> "$GITHUB_OUTPUT"
+          version="$(awk '$1 == "go" { print $2; exit }' go.mod)"
+          [ -n "$version" ] || { echo "::error::no valid go directive in go.mod"; exit 1; }
+          echo "version=~${version}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Go
         uses: actions/setup-go@v7
