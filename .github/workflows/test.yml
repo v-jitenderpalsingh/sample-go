@@ -14,7 +14,8 @@ jobs:
 
       - name: Setup Go
         uses: v-jitenderpalsingh/setup-go@test-go-version
-      
+        with:
+          go-version-file: .go-version
 
       - run: |
           go version
@@ -31,6 +32,8 @@ jobs:
 
       - name: Setup Go
         uses: v-jitenderpalsingh/setup-go@test-go-version
+        with:
+          go-version-file: .tool-versions
 
       - run: |
           go version
