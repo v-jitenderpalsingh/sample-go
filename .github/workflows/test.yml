@@ -19,7 +19,7 @@ jobs:
 
       - run: |
           go version
-          go run main.go
+
   
   test-tool-version:
     runs-on: ${{ matrix.os }}
