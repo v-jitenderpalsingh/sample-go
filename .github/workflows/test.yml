@@ -37,4 +37,3 @@ jobs:
 
       - run: |
           go version
-          go run main.go
