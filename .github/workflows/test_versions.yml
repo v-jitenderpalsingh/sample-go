@@ -1,6 +1,6 @@
 name: Test Go version syntax
 
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 jobs:
   # --- 1. Valid inputs that must succeed and resolve to the expected Go version ---
