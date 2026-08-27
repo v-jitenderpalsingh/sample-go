@@ -3,7 +3,7 @@ name: Test workflow
 on: [push, workflow_dispatch]
 
 jobs:  
-  test-tool-version:
+  test-v7:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -13,9 +13,37 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Setup Go
-        uses: v-jitenderpalsingh/setup-go@test-go-version
-        with:
-          go-version-file: .tool-versions
+        uses: actions/setup-go@v7
+
+      - run: |
+          go version
+    
+  test-v6:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup Go
+        uses: actions/setup-go@v6
+
+      - run: |
+          go version
+
+  test-v5:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
 
       - run: |
           go version
