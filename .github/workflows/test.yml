@@ -11,10 +11,7 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v7
-
-      - name: Setup Go
-        uses: priyagupta108/setup-go@collapse-setup-logs
-
-
+      - name: Check the go version on runner
       - run: |
           go version
+          which go
