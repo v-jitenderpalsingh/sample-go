@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Check the go version on runner
-      - run: |
+        run: |
           go version
           which go
