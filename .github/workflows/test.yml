@@ -4,8 +4,9 @@ on: [push, workflow_dispatch]
 
 jobs:  
   test-v7:
-    runs-on: {{ matrix.os }}
-    strategy: 
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
