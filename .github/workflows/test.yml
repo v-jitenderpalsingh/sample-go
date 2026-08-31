@@ -11,6 +11,14 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v7
-      - name: Check the go version on runner
-        run: |
-          which go
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: 1.23
+          check-latest: true
+
+      - name: Check go version
+        run: go version
+      
+      - name: Run main
+        run: go run main.go
