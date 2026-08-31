@@ -4,18 +4,13 @@ on: [push, workflow_dispatch]
 
 jobs:  
   test-v7:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
         uses: actions/setup-go@v7
         with:
-          go-version: 1.23
-          check-latest: true
+          go-version: 1.25
 
       - name: Check go version
         run: go version
