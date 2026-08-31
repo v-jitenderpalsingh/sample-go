@@ -4,7 +4,10 @@ on: [push, workflow_dispatch]
 
 jobs:  
   test-v7:
-    runs-on: macos-latest
+    runs-on: {{ matrix.os }}
+    strategy: 
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
@@ -17,4 +20,11 @@ jobs:
         run: go version
       
       - name: Run main
-        run: go run main.go
+        run: |
+          cat go.mod
+          echo " *************** "
+          go mod tidy
+          echo " *************** "
+          cat go.mod
+          echo " *************** "
+          go run main.go
