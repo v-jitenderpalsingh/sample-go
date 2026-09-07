@@ -16,6 +16,7 @@ jobs:
         with:
           go-version-file: go.mod
           go-version-file-behavior: 'latest-patch'
+          check-latest: true
 
       - name: Check go version
         run: go version
