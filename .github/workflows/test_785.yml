@@ -15,6 +15,7 @@ jobs:
         uses: johnmaguire/setup-go@go-version-file-behavior
         with:
           go-version-file: go.mod
+          go-version-file-behavior: 'latest-patch'
 
       - name: Check go version
         run: go version
