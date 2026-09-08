@@ -1,6 +1,6 @@
 name: Test workflow
 
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 jobs:  
   test-v7:
@@ -14,18 +14,9 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v7
         with:
-          go-version-file: go.mod
-          cache: false
-
-      - name: Check go version
-        run: go version
+          go-version: 1.26
       
       - name: Run main
         run: |
-          cat go.mod
-          echo " *************** "
-          go mod tidy
-          echo " *************** "
-          cat go.mod
-          echo " *************** "
+          go version
           go run main.go
