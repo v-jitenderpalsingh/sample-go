@@ -1,3 +1,3 @@
 module sample-go
 
-go 1.27rc3
+go go1.27rc3
