@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
-        uses: v-priyagupta108/setup-go@collapse-setup-logs
+        uses: actions/setup-go@v7
         with:
-          go-version: 1.26
+          go-version-file: go.mod
       
       - name: Run main
         run: |
