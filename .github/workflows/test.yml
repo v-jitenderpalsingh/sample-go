@@ -12,11 +12,27 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
-        uses: actions/setup-go@v7
+        id: setup-go
+        uses: v-mahabaleshwars/setup-go@feature/54-export-env-variables
         with:
           go-version: 1.26
           cache: true
-      
+
+      - name: Show setup-go outputs
+        shell: bash
+        run: |
+          echo 'all outputs: ${{ toJSON(steps.setup-go.outputs) }}'
+          echo 'go-version: ${{ steps.setup-go.outputs.go-version }}'
+          echo 'cache-hit:  ${{ steps.setup-go.outputs.cache-hit }}'
+          echo 'go-env:    ${{ steps.setup-go.outputs.go-env }}'
+          echo 'go-path:    ${{ steps.setup-go.outputs.go-path }}'
+          echo 'go-bin:    ${{ steps.setup-go.outputs.go-bin }}'
+          echo 'go-bin-path:    ${{ steps.setup-go.outputs.go-bin-path }}'
+          echo 'go-root:    ${{ steps.setup-go.outputs.go-root }}'
+          echo 'go-cache:    ${{ steps.setup-go.outputs.go-cache }}'
+          echo 'go-mod-cache:    ${{ steps.setup-go.outputs.go-mod-cache }}'
+
+
       - name: Run main
         run: |
           go version
