@@ -21,7 +21,6 @@ jobs:
       - name: Show setup-go outputs
         shell: bash
         run: |
-          echo 'all outputs: ${{ toJSON(steps.setup-go.outputs) }}'
           echo 'go-version: ${{ steps.setup-go.outputs.go-version }}'
           echo 'cache-hit:  ${{ steps.setup-go.outputs.cache-hit }}'
           echo 'go-env:    ${{ steps.setup-go.outputs.go-env }}'
