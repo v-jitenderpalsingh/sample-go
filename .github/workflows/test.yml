@@ -11,11 +11,23 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v7
-      - name: Set up Go
+      - name: Set up Go 1.26
         id: setup-go
         uses: v-mahabaleshwars/setup-go@feature/54-export-env-variables
         with:
           go-version: 1.26
+          cache: true
+      - name: Set up Go 1.26.1
+        id: setup-go-1-26-1
+        uses: v-mahabaleshwars/setup-go@feature/54-export-env-variables
+        with:
+          go-version: 1.26.1
+          cache: true
+      - name: Set up Go 1.26.2
+        id: setup-go-1-26-2
+        uses: v-mahabaleshwars/setup-go@feature/54-export-env-variables
+        with:
+          go-version: 1.26.2
           cache: true
 
       - name: Show setup-go outputs
@@ -30,7 +42,23 @@ jobs:
           echo 'go-cache:    ${{ steps.setup-go.outputs.go-cache }}'
           echo 'go-mod-cache:    ${{ steps.setup-go.outputs.go-mod-cache }}'
 
+      - name: Show setup-go-1-26-1 outputs
+        shell: bash
+        run: |
+          echo 'go-version: ${{ steps.setup-go-1-26-1.outputs.go-version }}'
+          echo 'cache-hit:  ${{ steps.setup-go-1-26-1.outputs.cache-hit }}'
+          echo 'go-path:    ${{ steps.setup-go-1-26-1.outputs.go-path }}'
+          echo 'go-bin:    ${{ steps.setup-go-1-26-1.outputs.go-bin }}'
+          echo 'go-bin-path:    ${{ steps.setup-go-1-26-1.outputs.go-bin-path }}'
+          echo 'go-root:    ${{ steps.setup-go-1-26-1.outputs.go-root }}'
+          echo 'go-cache:    ${{ steps.setup-go-1-26-1.outputs.go-cache }}'
+          echo 'go-mod-cache:    ${{ steps.setup-go-1-26-1.outputs.go-mod-cache }}'
 
+      - name: Show setup-go-1-26-2 go-bin-path
+        shell: bash
+        run: |      
+          echo 'go-bin-path:    ${{ steps.setup-go-1-26-2.outputs.go-bin-path }}'
+    
       - name: Run main
         run: |
           go version
