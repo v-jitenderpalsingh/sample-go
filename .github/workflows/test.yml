@@ -23,7 +23,6 @@ jobs:
         run: |
           echo 'go-version: ${{ steps.setup-go.outputs.go-version }}'
           echo 'cache-hit:  ${{ steps.setup-go.outputs.cache-hit }}'
-          echo 'go-env:    ${{ steps.setup-go.outputs.go-env }}'
           echo 'go-path:    ${{ steps.setup-go.outputs.go-path }}'
           echo 'go-bin:    ${{ steps.setup-go.outputs.go-bin }}'
           echo 'go-bin-path:    ${{ steps.setup-go.outputs.go-bin-path }}'
