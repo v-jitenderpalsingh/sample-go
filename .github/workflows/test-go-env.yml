@@ -21,7 +21,7 @@ jobs:
           go version
           go env
     
-  test-1.5:
+  test-old:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
