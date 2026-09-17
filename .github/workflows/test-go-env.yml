@@ -64,3 +64,4 @@ jobs:
           echo 'go-os:    ${{ steps.setup-go-old.outputs.go-os }}'
           echo 'go-arch:    ${{ steps.setup-go-old.outputs.go-arch }}'
           echo 'go-tool-dir:    ${{ steps.setup-go-old.outputs.go-tool-dir }}'
+          
