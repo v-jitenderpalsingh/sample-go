@@ -32,7 +32,7 @@ jobs:
           echo 'go-mod-cache:    ${{ steps.setup-go.outputs.go-mod-cache }}'
           echo 'go-os:    ${{ steps.setup-go.outputs.go-os }}'
           echo 'go-arch:    ${{ steps.setup-go.outputs.go-arch }}'
-          echo 'go-tool-dir:    ${{ steps.setup-go.outputs.go-tool-dir 
+          echo 'go-tool-dir:    ${{ steps.setup-go.outputs.go-tool-dir }}'
     
   test-old:
     runs-on: ${{ matrix.os }}
@@ -64,4 +64,3 @@ jobs:
           echo 'go-os:    ${{ steps.setup-go-old.outputs.go-os }}'
           echo 'go-arch:    ${{ steps.setup-go-old.outputs.go-arch }}'
           echo 'go-tool-dir:    ${{ steps.setup-go-old.outputs.go-tool-dir }}'
-          
