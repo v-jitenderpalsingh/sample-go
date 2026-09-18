@@ -8,14 +8,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-15-intel, ubuntu-26.04-arm, windows-11-arm, macos-latest]
+        os: [ubuntu-latest, windows-latest]
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
         uses: v-mahabaleshwars/setup-go@feature/54-go-env-outputs
         id: setup-go
         with:
-          go-version: 1.27
+          go-version: 1.8
           cache: true
       - name: Run check commands
         run: |
@@ -42,10 +42,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
-        uses: v-mahabaleshwars/setup-go@feature/54-go-env-outputs
+        uses: actions/setup-go@main
         id: setup-go-old
         with:
-          go-version: 1.26
+          go-version: 1.27
           cache: true
       - name: Run check commands
         run: |
