@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
-        uses: actions/setup-go@v7
+        uses: v-mahabaleshwars/setup-go@feature/54-export-env-variables
         id: setup-go
         with:
           go-version: 1.27
@@ -34,19 +34,19 @@ jobs:
           echo 'go-arch:    ${{ steps.setup-go.outputs.go-arch }}'
           echo 'go-tool-dir:    ${{ steps.setup-go.outputs.go-tool-dir }}'
     
-  test-old:
+  test-v7:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-15-intel]
+        os: [ubuntu-latest, windows-latest, macos-15-intel, ubuntu-26.04-arm, windows-11-arm, macos-latest]
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
         uses: actions/setup-go@v7
         id: setup-go-old
         with:
-          go-version: 1.8
+          go-version: 1.27
           cache: true
       - name: Run check commands
         run: |
