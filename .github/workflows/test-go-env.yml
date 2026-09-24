@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-15-intel, ubuntu-26.04-arm, windows-11-arm, macos-latest]
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
@@ -32,33 +32,4 @@ jobs:
           echo 'GOOS:    ${{ steps.setup-go.outputs.GOOS }}'
           echo 'GOARCH:    ${{ steps.setup-go.outputs.GOARCH }}'
           echo 'GOTOOLDIR:    ${{ steps.setup-go.outputs.GOTOOLDIR }}'
-    
-  test-v7:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-15-intel, ubuntu-26.04-arm, windows-11-arm, macos-latest]
-    steps:
-      - uses: actions/checkout@v7
-      - name: Set up Go
-        uses: actions/setup-go@main
-        id: setup-go-old
-        with:
-          go-version: 1.27
-          cache: true
-      - name: Run check commands
-        run: |
-          go version
-          echo '******************************************************'
-          echo 'go-version: ${{ steps.setup-go-old.outputs.go-version }}'
-          echo 'cache-hit:  ${{ steps.setup-go-old.outputs.cache-hit }}'
-          echo 'GOPATH:    ${{ steps.setup-go-old.outputs.GOPATH }}'
-          echo 'GOBIN:    ${{ steps.setup-go-old.outputs.GOBIN }}'
-          echo 'GOBINPATH:    ${{ steps.setup-go-old.outputs.GOBINPATH }}'
-          echo 'GOROOT:    ${{ steps.setup-go-old.outputs.GOROOT }}'
-          echo 'GOCACHE:    ${{ steps.setup-go-old.outputs.GOCACHE }}'
-          echo 'GOMODCACHE:    ${{ steps.setup-go-old.outputs.GOMODCACHE }}'
-          echo 'GOOS:    ${{ steps.setup-go-old.outputs.GOOS }}'
-          echo 'GOARCH:    ${{ steps.setup-go-old.outputs.GOARCH }}'
-          echo 'GOTOOLDIR:    ${{ steps.setup-go-old.outputs.GOTOOLDIR }}'
+ 
