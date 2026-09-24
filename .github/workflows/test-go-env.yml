@@ -12,10 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
-        uses: v-mahabaleshwars/setup-go@feature/54-go-env-outputs
+        uses: v-mahabaleshwars/setup-go@fix/791-output-variables
         id: setup-go
         with:
-          go-version: 1.8
+          go-version: 1.27
           cache: true
       - name: Run check commands
         run: |
@@ -23,15 +23,15 @@ jobs:
           echo '******************************************************'
           echo 'go-version: ${{ steps.setup-go.outputs.go-version }}'
           echo 'cache-hit:  ${{ steps.setup-go.outputs.cache-hit }}'
-          echo 'go-path:    ${{ steps.setup-go.outputs.go-path }}'
-          echo 'go-bin:    ${{ steps.setup-go.outputs.go-bin }}'
-          echo 'go-bin-path:    ${{ steps.setup-go.outputs.go-bin-path }}'
-          echo 'go-root:    ${{ steps.setup-go.outputs.go-root }}'
-          echo 'go-cache:    ${{ steps.setup-go.outputs.go-cache }}'
-          echo 'go-mod-cache:    ${{ steps.setup-go.outputs.go-mod-cache }}'
-          echo 'go-os:    ${{ steps.setup-go.outputs.go-os }}'
-          echo 'go-arch:    ${{ steps.setup-go.outputs.go-arch }}'
-          echo 'go-tool-dir:    ${{ steps.setup-go.outputs.go-tool-dir }}'
+          echo 'GOPATH:    ${{ steps.setup-go.outputs.GOPATH }}'
+          echo 'GOBIN:    ${{ steps.setup-go.outputs.GOBIN }}'
+          echo 'GOBINPATH:    ${{ steps.setup-go.outputs.GOBINPATH }}'
+          echo 'GOROOT:    ${{ steps.setup-go.outputs.GOROOT }}'
+          echo 'GOCACHE:    ${{ steps.setup-go.outputs.GOCACHE }}'
+          echo 'GOMODCACHE:    ${{ steps.setup-go.outputs.GOMODCACHE }}'
+          echo 'GOOS:    ${{ steps.setup-go.outputs.GOOS }}'
+          echo 'GOARCH:    ${{ steps.setup-go.outputs.GOARCH }}'
+          echo 'GOTOOLDIR:    ${{ steps.setup-go.outputs.GOTOOLDIR }}'
     
   test-v7:
     runs-on: ${{ matrix.os }}
@@ -53,12 +53,12 @@ jobs:
           echo '******************************************************'
           echo 'go-version: ${{ steps.setup-go-old.outputs.go-version }}'
           echo 'cache-hit:  ${{ steps.setup-go-old.outputs.cache-hit }}'
-          echo 'go-path:    ${{ steps.setup-go-old.outputs.go-path }}'
-          echo 'go-bin:    ${{ steps.setup-go-old.outputs.go-bin }}'
-          echo 'go-bin-path:    ${{ steps.setup-go-old.outputs.go-bin-path }}'
-          echo 'go-root:    ${{ steps.setup-go-old.outputs.go-root }}'
-          echo 'go-cache:    ${{ steps.setup-go-old.outputs.go-cache }}'
-          echo 'go-mod-cache:    ${{ steps.setup-go-old.outputs.go-mod-cache }}'
-          echo 'go-os:    ${{ steps.setup-go-old.outputs.go-os }}'
-          echo 'go-arch:    ${{ steps.setup-go-old.outputs.go-arch }}'
-          echo 'go-tool-dir:    ${{ steps.setup-go-old.outputs.go-tool-dir }}'
+          echo 'GOPATH:    ${{ steps.setup-go-old.outputs.GOPATH }}'
+          echo 'GOBIN:    ${{ steps.setup-go-old.outputs.GOBIN }}'
+          echo 'GOBINPATH:    ${{ steps.setup-go-old.outputs.GOBINPATH }}'
+          echo 'GOROOT:    ${{ steps.setup-go-old.outputs.GOROOT }}'
+          echo 'GOCACHE:    ${{ steps.setup-go-old.outputs.GOCACHE }}'
+          echo 'GOMODCACHE:    ${{ steps.setup-go-old.outputs.GOMODCACHE }}'
+          echo 'GOOS:    ${{ steps.setup-go-old.outputs.GOOS }}'
+          echo 'GOARCH:    ${{ steps.setup-go-old.outputs.GOARCH }}'
+          echo 'GOTOOLDIR:    ${{ steps.setup-go-old.outputs.GOTOOLDIR }}'
