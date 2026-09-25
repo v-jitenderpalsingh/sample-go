@@ -12,7 +12,37 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Set up Go
-        uses: v-mahabaleshwars/setup-go@fix/791-output-variables
+        uses: v-mahabaleshwars/setup-go@fix/go-env-output-names
+        id: setup-go
+        with:
+          go-version: 1.26
+          cache: true
+      - name: Run check commands
+        run: |
+          go version
+          echo '******************************************************'
+          echo 'go-version: ${{ steps.setup-go.outputs.go-version }}'
+          echo 'cache-hit:  ${{ steps.setup-go.outputs.cache-hit }}'
+          echo 'GOPATH:    ${{ steps.setup-go.outputs.GOPATH }}'
+          echo 'GOBIN:    ${{ steps.setup-go.outputs.GOBIN }}'
+          echo 'go-bin-path:    ${{ steps.setup-go.outputs.go-bin-path }}'
+          echo 'GOROOT:    ${{ steps.setup-go.outputs.GOROOT }}'
+          echo 'GOCACHE:    ${{ steps.setup-go.outputs.GOCACHE }}'
+          echo 'GOMODCACHE:    ${{ steps.setup-go.outputs.GOMODCACHE }}'
+          echo 'GOOS:    ${{ steps.setup-go.outputs.GOOS }}'
+          echo 'GOARCH:    ${{ steps.setup-go.outputs.GOARCH }}'
+          echo 'GOTOOLDIR:    ${{ steps.setup-go.outputs.GOTOOLDIR }}'
+ 
+  test-127:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-15-intel, ubuntu-26.04-arm, windows-11-arm, macos-latest]
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set up Go
+        uses: v-mahabaleshwars/setup-go@fix/go-env-output-names
         id: setup-go
         with:
           go-version: 1.27
