@@ -16,7 +16,7 @@ jobs:
       - name: setup go
         uses: actions/setup-go@main
         with:
-          go-version: 1.23.0-rc.1
+          go-version: 1.27.0-rc.1
 
       - name: Run go version
         run: go version
@@ -34,7 +34,7 @@ jobs:
       - name: setup go
         uses: arnested/setup-go@rc
         with:
-          go-version: 1.23.0-rc.1
+          go-version: 1.27.0-rc.1
 
       - name: Run go version
         run: go version
