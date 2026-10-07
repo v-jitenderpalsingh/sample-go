@@ -29,7 +29,7 @@ jobs:
       - name: do setup go using PR
         uses: arnested/setup-go@rc
         with:
-          go-version: 1.27.0-rc.1
+          go-version: 1.27rc1
 
       - name: check go version
         run: go version
