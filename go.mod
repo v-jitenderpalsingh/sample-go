@@ -1,3 +1,3 @@
 module sample-go
 
-toolchain go1.27rc2
+toolchain go1.27.2
