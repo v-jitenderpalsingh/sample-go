@@ -16,7 +16,7 @@ jobs:
       - name: setup go
         uses: actions/setup-go@main
         with:
-          go-version-file: go.mod
+          go-version: '~^v1.14.0'
 
       - name: Run go version
         run: go version
@@ -35,7 +35,7 @@ jobs:
       - name: Test setup go using PR
         uses: v-jitenderpalsingh/setup-go@test-go-version
         with:
-          go-version-file: go.mod
+          go-version: '~^v1.14.0'
 
       - name: check go version
         run: go version
