@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@main
 
       - name: setup go
-        uses: arnested/setup-go@rc
+        uses: actions/setup-go@main
         with:
           go-version-file: go.mod
 
@@ -22,6 +22,6 @@ jobs:
         run: go version
 
       - name: Again setup go
-        uses: arnested/setup-go@rc
+        uses: actions/setup-go@main
         with:
           go-version-file: go.mod
