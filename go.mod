@@ -1,5 +1,3 @@
 module sample-go
 
-go 1.18beta1
-
-toolchain go1.27rc2
+go 1.27rc1
