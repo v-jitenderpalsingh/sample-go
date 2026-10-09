@@ -1,3 +1,3 @@
 module sample-go
 
-go 1.24.13
+toolchain go1.24.13
