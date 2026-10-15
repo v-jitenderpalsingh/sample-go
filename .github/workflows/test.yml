@@ -34,3 +34,4 @@ jobs:
           go version
           go mod download
           go run .
+          
