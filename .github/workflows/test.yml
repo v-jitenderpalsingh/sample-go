@@ -22,7 +22,6 @@ jobs:
         run: |
           go version
 
-
       - name: Again setup go
         uses: arnested/setup-go@rc
         with:
