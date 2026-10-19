@@ -23,3 +23,14 @@ jobs:
           go version
           go mod download
           go run .
+
+      - name: Again setup go
+        uses: arnested/setup-go@rc
+        with:
+          go-version-file: go.mod
+
+      - name: Test version again
+        run: |
+          go version
+          go mod download
+          go run .
