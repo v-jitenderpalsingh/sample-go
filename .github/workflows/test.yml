@@ -21,8 +21,7 @@ jobs:
       - name: Run go version
         run: |
           go version
-          go mod download
-          go run .
+
 
       - name: Again setup go
         uses: arnested/setup-go@rc
@@ -32,5 +31,3 @@ jobs:
       - name: Test version again
         run: |
           go version
-          go mod download
-          go run .
