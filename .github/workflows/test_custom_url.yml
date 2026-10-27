@@ -1,0 +1,19 @@
+name: Test custom Go download
+
+on: [push, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go from custom URL
+        uses: v-jitenderpalsingh/setup-go@test-go-version-new
+        with:
+          go-version: 'go1.21rc2'
+          go-download-base-url: 'https://dl.google.com/go'
+          architecture: 'x64'
+          cache: false
+
+      - name: Verify installed version
+        run: |
+          go version
