@@ -9,7 +9,7 @@ jobs:
       - name: Set up Go from custom URL
         uses: v-jitenderpalsingh/setup-go@test-go-version-new
         with:
-          go-version: 'go1.21rc2'
+          go-version: 'go1.21.x'
           go-download-base-url: 'https://dl.google.com/go'
           architecture: 'x64'
           cache: false
