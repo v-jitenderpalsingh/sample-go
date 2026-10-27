@@ -41,3 +41,4 @@ jobs:
       - name: Assert previous step failed
         run: |
           go version
+          
