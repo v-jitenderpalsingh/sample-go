@@ -16,7 +16,7 @@ jobs:
       - name: setup go
         uses: v-jitenderpalsingh/setup-go@test-go-version-new
         with:
-          go-version-file: go.mod
+          go-version-file: version-file.txt
 
       - name: Run go version
         run: |
@@ -25,7 +25,7 @@ jobs:
       - name: Again setup go
         uses: v-jitenderpalsingh/setup-go@test-go-version-new
         with:
-          go-version-file: go.mod
+          go-version-file: version-file.txt
 
       - name: Test version again
         run: |
