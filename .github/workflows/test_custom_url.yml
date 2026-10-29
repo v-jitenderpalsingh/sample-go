@@ -10,7 +10,7 @@ jobs:
         uses: actions/setup-go@main
         with:
           go-version: 'go1.25.14'
-          go-download-base-url: 'https://aka.ms/golang/release/latest'
+          go-download-base-url: 'https://dl.google.com/go'
           architecture: 'x64'
           cache: false
 
