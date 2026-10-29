@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go from custom URL
-        uses: v-jitenderpalsingh/setup-go@test-go-version-new
+        uses: actions/setup-go@main
         with:
-          go-version: 'go1.21.x'
-          go-download-base-url: 'https://dl.google.com/go'
+          go-version: '1.25.14'
+          go-download-base-url: 'https://aka.ms/golang/release/latest'
           architecture: 'x64'
           cache: false
 
