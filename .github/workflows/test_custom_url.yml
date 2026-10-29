@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go from custom URL
-        uses: v-jitenderpalsingh/setup-go@04c4297c040ba26134953a13631204751be47cfb
+        uses: actions/setup-go@main
         with:
-          go-version: 'go1.25.14'
-          go-download-base-url: 'https://dl.google.com/go'
+          go-version: go1.27.3-1
+          go-download-base-url: 'https://aka.ms/golang/release/latest'
           architecture: 'x64'
           cache: false
 
@@ -19,10 +19,10 @@ jobs:
           go version
       
       - name: Again setup go to check cache lookup
-        uses: v-jitenderpalsingh/setup-go@04c4297c040ba26134953a13631204751be47cfb
+        uses: actions/setup-go@main
         with:
-          go-version: 'go1.25.14'
-          go-download-base-url: 'https://dl.google.com/go'
+          go-version: go1.27.3-1
+          go-download-base-url: 'https://aka.ms/golang/release/latest'
           architecture: 'x64'
           cache: false
 
