@@ -9,7 +9,7 @@ jobs:
       - name: Set up Go from custom URL
         uses: v-jitenderpalsingh/setup-go@test-go-version-new
         with:
-          go-version: go1.27.3-1
+          go-version: go1.27.3
           go-download-base-url: 'https://aka.ms/golang/release/latest'
           architecture: 'x64'
           cache: false
@@ -21,7 +21,7 @@ jobs:
       - name: Again setup go to check cache lookup
         uses: v-jitenderpalsingh/setup-go@test-go-version-new
         with:
-          go-version: go1.27.3-1
+          go-version: go1.27.3
           go-download-base-url: 'https://aka.ms/golang/release/latest'
           architecture: 'x64'
           cache: false
