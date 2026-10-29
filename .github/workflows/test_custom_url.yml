@@ -17,3 +17,15 @@ jobs:
       - name: Verify installed version
         run: |
           go version
+      
+      - name: Again setup go to check cache lookup
+        uses: v-jitenderpalsingh/setup-go@test-go-version-new
+        with:
+          go-version: 'go1.25.14'
+          go-download-base-url: 'https://dl.google.com/go'
+          architecture: 'x64'
+          cache: false
+
+      - name: Verify installed version again
+        run: |
+          go version
