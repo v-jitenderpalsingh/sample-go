@@ -30,3 +30,4 @@ jobs:
       - name: Test version again
         run: |
           go version
+          go run .
