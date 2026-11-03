@@ -16,7 +16,7 @@ jobs:
       - name: setup go
         uses: arnested/setup-go@rc
         with:
-          go-version-file: version-file.txt
+          go-version-file: go.mod
 
       - name: Run go version
         run: |
@@ -25,7 +25,7 @@ jobs:
       - name: Again setup go
         uses: arnested/setup-go@rc
         with:
-          go-version-file: version-file.txt
+          go-version-file: go.mod
 
       - name: Test version again
         run: |
