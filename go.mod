@@ -1,6 +1,8 @@
 module sample-go
 
-go 1.18beta2
+go 1.26
+
+toolchain go1.18beta2
 
 require rsc.io/quote v1.5.2
 
