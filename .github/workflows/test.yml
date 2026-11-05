@@ -3,7 +3,7 @@ name: Test workflow
 on: [push, workflow_dispatch]
 
 jobs:  
-  test-pr:
+  test-v7:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -14,20 +14,24 @@ jobs:
         uses: actions/checkout@main
 
       - name: setup go
-        uses: arnested/setup-go@rc
+        uses: actions/setup-go@main
         with:
           go-version-file: go.mod
 
       - name: Run go version
         run: |
           go version
+          go mod download
+          go run .
 
       - name: Again setup go
-        uses: arnested/setup-go@rc
+        uses: actions/setup-go@main
         with:
           go-version-file: go.mod
-
-      - name: Test version again
+      
+      - name: Test version
         run: |
           go version
+          go mod download
           go run .
+          
