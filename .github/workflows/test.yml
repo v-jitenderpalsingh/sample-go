@@ -24,6 +24,10 @@ jobs:
           go mod download
           go run .
 
+      - name: Clean up Go modules
+        run: |
+          go clean -modcache
+
       - name: Again setup go
         uses: actions/setup-go@main
         with:
