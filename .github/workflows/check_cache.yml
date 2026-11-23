@@ -5,80 +5,20 @@ on: [push, workflow_dispatch]
 permissions:
   contents: read
 
-env:
-  CGO_ENABLED: "1"
-  CGO_CFLAGS: "-I/tmp/cgo-demo-include"
-
 jobs:
-  ubuntu:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Create sample with header value 1
-        run: |
-          mkdir -p demo /tmp/cgo-demo-include
-          printf 'module example.com/demo\n\ngo 1.25\n// %s-%s\n' \
-            "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" > demo/go.mod
-
-          cat > demo/main.go <<'EOF'
-          package main
-          // #include <probe.h>
-          import "C"
-          import "fmt"
-          func main() { fmt.Println(C.value()) }
-          EOF
-
-          echo 'static inline int value(void) { return 1; }' \
-            > /tmp/cgo-demo-include/probe.h
-
-      - uses: actions/setup-go@v7
-        env:
-          ImageOS: ubuntu24
-        with:
-          go-version: "1.25.0"
-          cache: true
-          cache-dependency-path: demo/go.mod
-
-      - name: Build and populate cache
-        working-directory: demo
-        run: go run .
-
-  slim:
-    needs: ubuntu
+  test:
     runs-on: ubuntu-slim
     steps:
-      - name: Create sample with header value 2
-        run: |
-          mkdir -p demo /tmp/cgo-demo-include
-          printf 'module example.com/demo\n\ngo 1.25\n// %s-%s\n' \
-            "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" > demo/go.mod
-
-          cat > demo/main.go <<'EOF'
-          package main
-          // #include <probe.h>
-          import "C"
-          import "fmt"
-          func main() { fmt.Println(C.value()) }
-          EOF
-
-          echo 'static inline int value(void) { return 2; }' \
-            > /tmp/cgo-demo-include/probe.h
-
-      - uses: actions/setup-go@v7
-        id: setup
-        env:
-          ImageOS: ubuntu24
+      - uses: actions/checkout@main
+      - uses: actions/setup-go@main
         with:
           go-version: "1.25.0"
           cache: true
-          cache-dependency-path: demo/go.mod
 
-      - name: Compare builds
-        working-directory: demo
-        env:
-          CACHE_HIT: ${{ steps.setup.outputs.cache-hit }}
+      - name: Display Go version
+        run: go version
+
+      - name: check runner variables
         run: |
-          echo "Cache hit: $CACHE_HIT"
-          echo "With restored cache:"
-          go run .
-          echo "With fresh build cache:"
-          GOCACHE="$(mktemp -d)" go run .
+          echo "ImageOS: $ImageOS"
+          echo "IMAGE_OS: $IMAGE_OS"
